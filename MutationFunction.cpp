@@ -1,6 +1,8 @@
 #include "MutationFunction.h"
 
-MutationFunctio::MutationFunction() : mutator(0.0f) {}
+MutationFunction::MutationFunction() : mutator(0.0f) {}
+
+MutationFunction::MutationFunction(float m) : mutator(m) {}
 
 float MutationFunction::getMutator() {
 	return mutator;

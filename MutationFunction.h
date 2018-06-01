@@ -11,7 +11,8 @@
 
 class MutationFunction {
 public:
-	MutationFunction() : mutator(0.0f) {}
+	MutationFunction();
+	MutationFunction(float m);
 	float getMutator();
 	void setMutator(float m);
 private:

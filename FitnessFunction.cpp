@@ -28,21 +28,21 @@ void FitnessFunction::setTarget(float t) {
 	target = t;
 }
 
-float FitnessFunction::calculateFitness(float val) {
+float FitnessFunction::calculateValue(float x) {
 	float numeratorValue = 0;
 	float denominatorValue = 0;
-	float fitness;
+	float result;
 
 	for(int i = 0; i < numeratorFactors.size(); i++) {
-		numeratorValue += numeratorFactors[i]*pow(val, i);
+		numeratorValue += numeratorFactors[i]*pow(x, i);
 	}
 
 	for(int i = 0; i < denominatorFactors.size(); i++) {
-		denominatorValue += denominatorFactors[i]*pow(val, i);
+		denominatorValue += denominatorFactors[i]*pow(x, i);
 	}
 
-	fitness = numeratorValue/denominatorValue;
-	return fitness;
+	result = numeratorValue/denominatorValue;
+	return result;
 }
 
 

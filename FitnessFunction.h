@@ -21,7 +21,7 @@ public:
 	void setDenominatorFactors(std::vector<float> denomFact);
 	float getTarget();
 	void setTarget(float t);
-	float calculateFitness(float val);
+	float calculateValue(float x);
 private:
 	std::vector<float> numeratorFactors;
 	std::vector<float> denominatorFactors;

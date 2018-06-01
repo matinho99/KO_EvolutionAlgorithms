@@ -8,12 +8,15 @@
 #ifndef EVOALGORITHM_H_
 #define EVOALGORITHM_H_
 
+#include "Population.h"
+#include "FitnessFunction.h"
+#include "MutationFunction.h"
+#include "CrossoverFunction.h"
 
 class EvoAlgorithm {
 public:
 	virtual ~EvoAlgorithm() {}
-	//void setFitnessFunction(FitnessFunction *f);
-	virtual void execAlgorithm() {}
+	virtual Population execAlgorithm(const Population& p, FitnessFunction *ff, MutationFunction *mf, CrossoverFunction *cf) {}
 };
 
 

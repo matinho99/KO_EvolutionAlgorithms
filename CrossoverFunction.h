@@ -11,7 +11,8 @@
 
 class CrossoverFunction {
 public:
-	CrossoverFunction() : crossFactor(0.0f) {}
+	CrossoverFunction();
+	CrossoverFunction(float cf);
 	float getCrossFactor();
 	void setCrossFactor(float cf);
 private:

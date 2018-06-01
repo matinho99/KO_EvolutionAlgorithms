@@ -1,6 +1,8 @@
 #include "CrossoverFunction.h"
 
-MutationFunctio::MutationFunction() : crossFactor(0.0f) {}
+CrossoverFunction::CrossoverFunction() : crossFactor(0.0f) {}
+
+CrossoverFunction::CrossoverFunction(float cf) : crossFactor(cf) {}
 
 float CrossoverFunction::getCrossFactor() {
 	return crossFacto;

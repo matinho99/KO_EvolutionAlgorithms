@@ -13,8 +13,6 @@ ExecClass::ExecClass(int popSize) : ExecClass() {
 		Individual ind(val);
 		pop.addIndividual(ind);
 	}
-
-	std::cout << pop;
 }
 
 ExecClass::~ExecClass() {}
@@ -48,11 +46,11 @@ void ExecClass::setAlgorithm(EvoAlgorithm *ea) {
 }
 
 void ExecClass::generateNextPopulation() {
-	alg->execAlgorithm();
+	pop = alg->execAlgorithm(pop, ff, mf, cf);
 }
 
 void ExecClass::showPopulationFitness() {
 	for(Individual i : pop.getPopulation()) {
-		std::cout << i.getValue() << " - " << ff->calculateFitness(i.getValue()) << std::endl;
+		std::cout << i.getValue() << " - " << ff->calculateValue(i.getValue()) << std::endl;
 	}
 }
