@@ -15,7 +15,7 @@
 class Population {
 public:
 	Population();
-	void addIndividual(const Individual &ind);
+	void addIndividual(Individual ind);
 	std::vector<Individual> getPopulation() const;
 	friend std::ostream& operator<<(std::ostream& os, const Population& p);
 private:

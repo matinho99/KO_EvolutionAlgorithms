@@ -28,7 +28,7 @@ void FitnessFunction::setTarget(float t) {
 	target = t;
 }
 
-float FitnessFunction::calculateValue(float x) {
+float FitnessFunction::calculateFunctionValue(float x) {
 	float numeratorValue = 0;
 	float denominatorValue = 0;
 	float result;
@@ -43,6 +43,11 @@ float FitnessFunction::calculateValue(float x) {
 
 	result = numeratorValue/denominatorValue;
 	return result;
+}
+
+float FitnessFunction::calculateFitness(float x) {	
+	float result = calculateFunctionValue(x);
+	return (result - target == 0) ? 1/1000.0f : 1.0f/(fabs(result - target));
 }
 
 

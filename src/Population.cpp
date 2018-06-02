@@ -2,7 +2,7 @@
 
 Population::Population() {}
 
-void Population::addIndividual(const Individual &ind) {
+void Population::addIndividual(Individual ind) {
 	pop.push_back(ind);
 }
 

@@ -51,6 +51,6 @@ void ExecClass::generateNextPopulation() {
 
 void ExecClass::showPopulationFitness() {
 	for(Individual i : pop.getPopulation()) {
-		std::cout << i.getValue() << " - " << ff->calculateValue(i.getValue()) << std::endl;
+		std::cout << i.getValue() << " - fitness = " << ff->calculateFitness(i.getValue()) << " - function value = " << ff->calculateFunctionValue(i.getValue()) << std::endl;
 	}
 }

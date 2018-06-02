@@ -58,32 +58,41 @@ public:
 class PairsEvo : public EvoAlgorithm {
 public:
 	Population execAlgorithm(const Population& p, FitnessFunction *ff, MutationFunction *mf, CrossoverFunction *cf) {
-		Population newPop;
-		std::vector<Individual> newIndM;
+		std::cout << "Pairs Evo" << std::endl;
 		int popSize = p.getPopulation().size();
+		int pairFoundMatrix[popSize][popSize] = { 0 };
+		float tolerance = 0.0f;
+		float target = ff->getTarget();
+		int found = 0;
+		Population newPop;
 
-		for(int i = 0; i < popSize-1; i++) {
-			Individual iInd = p.getPopulation().at(i);
-			float iVal = iInd.getValue();
-			
-			for(int j = i+1; j < popSize; j++) {
-				Individual jInd = p.getPopulation().at(j);
-				float jVal = jInd.getValue();
-				Individual newInd;
-				newInd.setValue((iVal+jVal)/2);
-				newIndM.push_back(newInd);
+		while(found < popSize) {
+			tolerance += 1.0f;
+
+			for(int i = 0; i < popSize-1 && found < popSize; i++) {
+				float iVal = p.getPopulation().at(i).getValue();
+
+				for(int j = i+1; j < popSize && found < popSize; j++) {
+					if(pairFoundMatrix[i][j] == 1) continue;
+
+					float jVal = p.getPopulation().at(j).getValue();
+					float newVal = (iVal+jVal)/2;
+					float y = ff->calculateFitness(newVal);
+
+					if(abs(y-target) < tolerance) {
+						if(y < target) {
+
+						} else {
+							
+						}
+
+						Individual newInd(newVal);
+						newPop.addIndividual(newInd);
+						pairFoundMatrix[i][j] = 1;
+						found++;
+					}
+				}
 			}
-		}
-
-		for(int i = newIndM.size(); i > 0; --i) {
-			for(int j = 0; j < i-1; ++j) {
-				if(ff->calculateFitness(newIndM[j].getValue()) < ff->calculateFitness(newIndM[j+1].getValue()))
-					std::swap(newIndM[j], newIndM[j+1]);
-			}
-		}
-
-		for(int i = 0; i < popSize; i++) {
-			newPop.addIndividual(newIndM[i]);
 		}
 
 		return newPop;
@@ -91,8 +100,8 @@ public:
 };
 
 int main() {
-	ExecClass e(20);
-	PairsEvo se;
+	ExecClass e(5);
+	StandardEvo se;
 	e.setAlgorithm(&se);
 	std::vector<float> num {1, 1, 1};
 	std::vector<float> denom {2, 0, 0};
@@ -102,7 +111,7 @@ int main() {
 	e.setMutationFunction(&mf);
 	e.showPopulationFitness();
 
-	for(int i = 0; i < 5; i++) {
+	for(int i = 0; i < 20; i++) {
 		e.generateNextPopulation();
 		e.showPopulationFitness();
 	}
