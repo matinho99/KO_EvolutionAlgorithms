@@ -1,8 +1,12 @@
 /*
- * Population.h
+ * \class Population
  *
- *  Created on: 28.04.2018
- *      Author: matinho1706
+ * \brief Class that holds the population of the algorithm.
+ *
+ * Class that holds the vector of the individuals in the population
+ * and methods for adding, returning members and writing out the members.
+ *
+ * Created on: 28.04.2018
  */
 
 #ifndef POPULATION_H_
@@ -19,7 +23,7 @@ public:
 	std::vector<Individual> getPopulation() const;
 	friend std::ostream& operator<<(std::ostream& os, const Population& p);
 private:
-	std::vector<Individual> pop;
+	std::vector<Individual> pop;			///< Vector of the individuals in the population.
 };
 
 

@@ -1,8 +1,11 @@
 /*
- * Algorithm.h
+ * \class EvoAlgorithm
  *
- *  Created on: 28.04.2018
- *      Author: matinho1706
+ * \brief Base class for specific algorithm class implementation.
+ *
+ * Class that is inherited to a specific evolutionary algorithm class.
+ *
+ * Created on: 28.04.2018
  */
 
 #ifndef EVOALGORITHM_H_
@@ -16,7 +19,7 @@
 class EvoAlgorithm {
 public:
 	virtual ~EvoAlgorithm() {}
-	virtual Population execAlgorithm(const Population& p, FitnessFunction *ff, MutationFunction *mf, CrossoverFunction *cf) {}
+	virtual Population execAlgorithm(const Population& p, FitnessFunction *ff, MutationFunction *mf, CrossoverFunction *cf) {}		///< Function responsible for executing the algorithm code.
 };
 
 

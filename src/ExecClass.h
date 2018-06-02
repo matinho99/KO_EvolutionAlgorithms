@@ -1,8 +1,12 @@
 /*
- * ExecClass.h
+ * \class ExecClass
  *
- *  Created on: 28.04.2018
- *      Author: matinho1706
+ * \brief Class that holds the executing algorithm and its key elements.
+ *
+ * Class that holds the EvoAlgorithm specific algorithm as well as
+ * mutation, crossover, fitness functions and population.
+ *
+ * Created on: 28.04.2018
  */
 
 #ifndef EXECCLASS_H_
@@ -26,14 +30,14 @@ public:
 	CrossoverFunction *getCrossoverFunction();
 	void setCrossoverFunction(CrossoverFunction *f);
 	void setAlgorithm(EvoAlgorithm *ea);
-	void generateNextPopulation();
-	void showPopulationFitness();
+	void generateNextPopulation();	///< Executes the execAlgorithm function of the alg algorithm.
+	void showPopulationFitness();	///< Writes out the values and fitness values of the population.
 private:
-	Population pop;
-	FitnessFunction *ff;
-	MutationFunction *mf;
-	CrossoverFunction *cf;
-	EvoAlgorithm *alg;
+	Population pop;					///< The population the algorithm operates on.
+	FitnessFunction *ff;			///< The fitness function the algorithm uses.
+	MutationFunction *mf;			///< The mutation function for algorithm use.
+	CrossoverFunction *cf;			///< The crossover Function for algorithm use.
+	EvoAlgorithm *alg;				///< The specific algorithm the program executes.
 };
 
 

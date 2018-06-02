@@ -1,8 +1,12 @@
 /*
- * CrossoverFunction.h
+ * \class CrossoverFunction
  *
- *  Created on: 28.04.2018
- *      Author: matinho1706
+ * \brief Class that holds the parameter for the crossover function
+ *
+ * Class that holds the parameter for the crossover function along with
+ * the methods for setting and returning the variable.
+ *
+ * Created on: 28.04.2018
  */
 
 #ifndef CROSSOVERFUNCTION_H_
@@ -16,7 +20,7 @@ public:
 	float getCrossFactor();
 	void setCrossFactor(float cf);
 private:
-	float crossFactor;
+	float crossFactor;			///< The crossover function parameter
 };
 
 

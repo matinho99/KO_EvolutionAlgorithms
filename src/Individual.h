@@ -1,8 +1,12 @@
 /*
- * Individual.h
+ * \class Individual
  *
- *  Created on: 28.04.2018
- *      Author: matinho1706
+ * \brief Class that holds the value of an individual.
+ *
+ * Class that holds the value describing the individual
+ * and methods for setting and returning it.
+ *
+ * Created on: 28.04.2018
  */
 
 #ifndef INDIVIDUAL_H_
@@ -16,7 +20,7 @@ public:
 	float getValue();
 	void setValue(float v);
 private:
-	float value;
+	float value;			///< The value describing the individual.
 };
 
 

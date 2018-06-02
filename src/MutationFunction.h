@@ -1,8 +1,12 @@
 /*
- * MutationFunction.h
+ * \class MutationFunction
  *
- *  Created on: 28.04.2018
- *      Author: matinho1706
+ * \brief Class that holds the mutation function parameter
+ *
+ * Class that holds the parameter describing the mutation function
+ * and the methods for setting and returning it.
+ *
+ * Created on: 28.04.2018
  */
 
 #ifndef MUTATIONFUNCTION_H_
@@ -16,7 +20,7 @@ public:
 	float getMutator();
 	void setMutator(float m);
 private:
-	float mutator;
+	float mutator;				///< Mutation parameter of the mutation function.
 };
 
 
