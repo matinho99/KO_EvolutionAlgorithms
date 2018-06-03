@@ -23,21 +23,24 @@ public:
 	ExecClass();
 	ExecClass(int popSize);
 	~ExecClass();
+	Population getPopulation();
+	void setPopulation(Population p);
 	FitnessFunction *getFitnessFunction();
 	void setFitnessFunction(FitnessFunction *f);
 	MutationFunction *getMutationFunction();
 	void setMutationFunction(MutationFunction *f);
 	CrossoverFunction *getCrossoverFunction();
 	void setCrossoverFunction(CrossoverFunction *f);
+	EvoAlgorithm *getAlgorithm();
 	void setAlgorithm(EvoAlgorithm *ea);
 	void generateNextPopulation();	///< Executes the execAlgorithm function of the alg algorithm.
 	void showPopulationFitness();	///< Writes out the values and fitness values of the population.
 private:
-	Population pop;					///< The population the algorithm operates on.
+	Population pop;				///< The population the algorithm operates on.
 	FitnessFunction *ff;			///< The fitness function the algorithm uses.
 	MutationFunction *mf;			///< The mutation function for algorithm use.
 	CrossoverFunction *cf;			///< The crossover Function for algorithm use.
-	EvoAlgorithm *alg;				///< The specific algorithm the program executes.
+	EvoAlgorithm *alg;			///< The specific algorithm the program executes.
 };
 
 

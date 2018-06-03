@@ -29,9 +29,9 @@ void FitnessFunction::setTarget(float t) {
 }
 
 float FitnessFunction::calculateFunctionValue(float x) {
-	float numeratorValue = 0;
-	float denominatorValue = 0;
-	float result;
+	float numeratorValue = 0.0f;
+	float denominatorValue = 0.0f;
+	float result = 0.0f;
 
 	for(int i = 0; i < numeratorFactors.size(); i++) {
 		numeratorValue += numeratorFactors[i]*pow(x, i);
@@ -41,7 +41,10 @@ float FitnessFunction::calculateFunctionValue(float x) {
 		denominatorValue += denominatorFactors[i]*pow(x, i);
 	}
 
-	result = numeratorValue/denominatorValue;
+	if(denominatorValue != 0.0f) {
+		result = numeratorValue/denominatorValue;
+	}
+
 	return result;
 }
 

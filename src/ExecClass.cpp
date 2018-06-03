@@ -17,6 +17,10 @@ ExecClass::ExecClass(int popSize) : ExecClass() {
 
 ExecClass::~ExecClass() {}
 
+Population ExecClass::getPopulation() {
+	return pop;
+}
+
 FitnessFunction *ExecClass::getFitnessFunction() {
 	return ff;
 }
@@ -27,6 +31,14 @@ MutationFunction *ExecClass::getMutationFunction() {
 
 CrossoverFunction *ExecClass::getCrossoverFunction() {
 	return cf;
+}
+
+EvoAlgorithm *ExecClass::getAlgorithm() {
+	return alg;
+}
+
+void ExecClass::setPopulation(Population p) {
+	pop = p;
 }
 
 void ExecClass::setFitnessFunction(FitnessFunction *f) {
@@ -50,7 +62,7 @@ void ExecClass::generateNextPopulation() {
 }
 
 void ExecClass::showPopulationFitness() {
-	for(Individual i : pop.getPopulation()) {
+	for(Individual i : pop.getIndividuals()) {
 		std::cout << i.getValue() << " - fitness = " << ff->calculateFitness(i.getValue()) << " - function value = " << ff->calculateFunctionValue(i.getValue()) << std::endl;
 	}
 }

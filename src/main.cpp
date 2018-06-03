@@ -34,7 +34,7 @@ public:
 		float mut = mf->getMutator();
 		std::cout << "Standard Evo -> target = " << target << std::endl;
 
-		for(Individual i : p.getPopulation()) {
+		for(Individual i : p.getIndividuals()) {
 			float iVal = i.getValue();
 			float fitness = ff->calculateFitness(iVal);
 			float y = ff->calculateFunctionValue(iVal);
@@ -60,14 +60,14 @@ public:
 	Population execAlgorithm(const Population& p, FitnessFunction *ff, MutationFunction *mf, CrossoverFunction *cf) {
 		Population newPop;
 		std::vector<Individual> newIndM;
-		int popSize = p.getPopulation().size();
+		int popSize = p.getIndividuals().size();
 
 		for(int i = 0; i < popSize-1; i++) {
-			Individual iInd = p.getPopulation().at(i);
+			Individual iInd = p.getIndividuals().at(i);
 			float iVal = iInd.getValue();
 			
 			for(int j = i+1; j < popSize; j++) {
-				Individual jInd = p.getPopulation().at(j);
+				Individual jInd = p.getIndividuals().at(j);
 				float jVal = jInd.getValue();
 				Individual newInd;
 				newInd.setValue((iVal+jVal)/2);
@@ -91,21 +91,24 @@ public:
 };
 
 int main() {
+	srand(time(NULL));
 	ExecClass e(20);
 	PairsEvo se;
 	e.setAlgorithm(&se);
-	std::vector<float> num {1, 1, 1};
-	std::vector<float> denom {2, 0, 0};
-	FitnessFunction ff(num, denom, 10.0f);
+	FitnessFunction ff({1, 1, 1}, {2, 0, 0}, 10.0f);
 	e.setFitnessFunction(&ff);
 	MutationFunction mf(0.05f);
 	e.setMutationFunction(&mf);
 	e.showPopulationFitness();
 
 	for(int i = 0; i < 5; i++) {
+		std::cout << "Population nr. " << i+1 << std::endl;
 		e.generateNextPopulation();
 		e.showPopulationFitness();
 	}
+
+	FitnessFunction testFF;
+	std::cout << testFF.calculateFunctionValue(2.0f) << std::endl;
 
 	return 0;
 }
