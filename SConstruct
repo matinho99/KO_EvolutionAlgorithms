@@ -10,6 +10,7 @@ sources.append("src/CrossoverFunction.cpp")
 sources.append("src/FitnessFunction.cpp")
 sources.append("src/MutationFunction.cpp")
 sources.append("src/ExecClass.cpp")
+sources.append("src/ui.cpp")
 sources.append("src/main.cpp")
 
 env = Environment()
