@@ -65,5 +65,4 @@ void ExecClass::showPopulationFitness() {
 	for(Individual i : pop.getIndividuals()) {
 		std::cout << i.getValue() << " - fitness = " << ff->calculateFitness(i.getValue()) << " - function value = " << ff->calculateFunctionValue(i.getValue()) << std::endl;
 	}
-	std::cout << std::endl;
 }
