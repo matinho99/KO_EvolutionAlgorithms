@@ -14,6 +14,7 @@
 
 #include <vector>
 #include <math.h>
+#include "EvoException.h"
 
 class FitnessFunction {
 public:
@@ -25,12 +26,12 @@ public:
 	void setDenominatorFactors(const std::vector<float>& denomFact);
 	float getTarget();
 	void setTarget(float t);
-	float calculateFitness(float x);			///< Calculate fitness of x
+	float calculateFitness(float x);		///< Calculate fitness of x
 	float calculateFunctionValue(float x);		///< Calculate the function value of x
 private:
 	std::vector<float> numeratorFactors;		///< Numerator factors of the fitness function in descending powers.
 	std::vector<float> denominatorFactors;		///< Denominator factors of the fitness function in descending powers.
-	float target;								///< Target value of the fitness function.
+	float target;					///< Target value of the fitness function.
 };
 
 

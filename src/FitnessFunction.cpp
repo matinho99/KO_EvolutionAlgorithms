@@ -43,6 +43,8 @@ float FitnessFunction::calculateFunctionValue(float x) {
 
 	if(denominatorValue != 0.0f) {
 		result = numeratorValue/denominatorValue;
+	} else {
+		throw EvoZeroDivisionException();
 	}
 
 	return result;

@@ -85,7 +85,17 @@ int main() {
 	e.setAlgorithm(new StandardEvo());
 	e.setFitnessFunction(FitnessFunction());
 	e.setMutationFunction(MutationFunction());
-	e.setCrossoverFunction(CrossoverFunction());	//
-	ui(e);
+	e.setCrossoverFunction(CrossoverFunction());
+
+	try {
+		ui(e);
+	} catch (EvoZeroDivisionException e) {
+		std::cout << "EvoZeroDivisionException rzucony: " << e.what() << std::endl;
+	} catch (EvoNullPointerException e) {
+		std::cout << "EvoNullPointerException rzucony: " << e.what() << std::endl;
+	} catch (std::exception e) {
+		std::cout << "std::exception rzucony: " << e.what() << std::endl;
+	}
+
 	return 0;
 }

@@ -61,16 +61,16 @@ BOOST_AUTO_TEST_CASE(WhenFitnessFunctionDefualtConstructThenNumeratorIsEmptyAndD
 	BOOST_CHECK_EQUAL(0.0f, ff.getTarget());
 }
 
-BOOST_AUTO_TEST_CASE(WhenFitnessFunctionDefaultConstructThenFunctionValueIsZero) {
+BOOST_AUTO_TEST_CASE(WhenFitnessFunctionDefaultConstructThenFunctionValueThrows) {
 	FitnessFunction ff;
-	BOOST_CHECK_EQUAL(0.0f, ff.calculateFunctionValue(2.0f));
-	BOOST_CHECK_EQUAL(0.0f, ff.calculateFunctionValue(20.0f));
+	BOOST_CHECK_THROW(ff.calculateFunctionValue(2.0f), EvoZeroDivisionException);
+	BOOST_CHECK_THROW(ff.calculateFunctionValue(20.0f), EvoZeroDivisionException);
 }
 
-BOOST_AUTO_TEST_CASE(WhenFitnessFunctionDefaultConstructThenFitnessIsZero) {
+BOOST_AUTO_TEST_CASE(WhenFitnessFunctionDefaultConstructThenFitnessThrows) {
 	FitnessFunction ff;
-	BOOST_CHECK_EQUAL(1/1000.0f, ff.calculateFitness(2.0f));
-	BOOST_CHECK_EQUAL(1/1000.0f, ff.calculateFitness(20.0f));
+	BOOST_CHECK_THROW(ff.calculateFitness(2.0f), EvoZeroDivisionException);
+	BOOST_CHECK_THROW(ff.calculateFitness(20.0f), EvoZeroDivisionException);
 }
 
 BOOST_AUTO_TEST_CASE(WhenFitnessFunctionConstructWithNumeratorDenominatorAndTargetThenTheyAreSetCorrectly) {
@@ -112,6 +112,13 @@ BOOST_AUTO_TEST_CASE(WhenFitnessFunctionConstructWithNumeratorDenominatorAndTarg
 	BOOST_CHECK_EQUAL(1/(111.0f-10.0f), ff.calculateFitness(10.0f));
 }
 
+BOOST_AUTO_TEST_CASE(WhenFitnessFunctionDivisionByZeroThenExceptionIsThrown) {
+	std::vector<float> numFact {1, 1, 1};
+	std::vector<float> denomFact {0};
+	FitnessFunction ff(numFact, denomFact, 10.0f);
+	BOOST_CHECK_THROW(ff.calculateFitness(2.0f), EvoZeroDivisionException);
+}
+
 /* MutationFunction class testing */
 BOOST_AUTO_TEST_CASE(WhenMutationDefaultConstructThenMutatorIsZero) {
 	MutationFunction mf;
@@ -140,6 +147,11 @@ BOOST_AUTO_TEST_CASE(WhenCrossoverIsSetThenCrossoverFactorIsCorrect) {
 BOOST_AUTO_TEST_CASE(WhenExecClassDefaultConstructThenPopulationIsEmptyAndFunctionsAndAlgorithmAreNull) {
 	ExecClass e;
 	BOOST_CHECK_EQUAL(true, e.getPopulation().getIndividuals().empty());
+}
+
+BOOST_AUTO_TEST_CASE(WhenExecClassNullAlgorithmThenGeneratePopulationThrows) {
+	ExecClass e;
+	BOOST_CHECK_THROW(e.generateNextPopulation(), EvoNullPointerException);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

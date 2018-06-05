@@ -74,8 +74,6 @@ void ui(ExecClass &e) {
 				}
 
 				e.setPopulation(newPop);
-				std::cout << "Populacja numer: " << ++popno << std::endl;
-				e.showPopulationFitness();
 				break;
 			}
 			case 2:

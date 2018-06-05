@@ -55,6 +55,7 @@ void ExecClass::setAlgorithm(EvoAlgorithm* ea) {
 }
 
 void ExecClass::generateNextPopulation() {
+	if(alg == nullptr) throw EvoNullPointerException();
 	pop = alg->execAlgorithm(pop, ff, mf, cf);
 }
 
