@@ -14,16 +14,16 @@ public:
 	StandardEvo() {}
 	~StandardEvo() {}
 
-	Population execAlgorithm(const Population& p, FitnessFunction *ff, MutationFunction *mf, CrossoverFunction *cf) {
+	Population execAlgorithm(Population& p, FitnessFunction& ff, MutationFunction& mf, CrossoverFunction& cf) {
 		Population newPop;
-		float target = ff->getTarget();
+		float target = ff.getTarget();
 		float tolerance = 1.0f;
-		float mut = mf->getMutator();
+		float mut = mf.getMutator();
 
 		for(Individual i : p.getIndividuals()) {
 			float iVal = i.getValue();
-			float fitness = ff->calculateFitness(iVal);
-			float y = ff->calculateFunctionValue(iVal);
+			float fitness = ff.calculateFitness(iVal);
+			float y = ff.calculateFunctionValue(iVal);
 
 			if(fitness < tolerance) {
 				if(y < target) {
@@ -46,7 +46,7 @@ public:
 	PairsEvo() {};
 	~PairsEvo() {};
 
-	Population execAlgorithm(const Population& p, FitnessFunction *ff, MutationFunction *mf, CrossoverFunction *cf) {
+	Population execAlgorithm(Population& p, FitnessFunction& ff, MutationFunction& mf, CrossoverFunction& cf) {
 		Population newPop;
 		std::vector<Individual> newIndM;
 		int popSize = p.getIndividuals().size();
@@ -66,7 +66,7 @@ public:
 
 		for(int i = newIndM.size(); i > 0; --i) {
 			for(int j = 0; j < i-1; ++j) {
-				if(ff->calculateFitness(newIndM[j].getValue()) < ff->calculateFitness(newIndM[j+1].getValue()))
+				if(ff.calculateFitness(newIndM[j].getValue()) < ff.calculateFitness(newIndM[j+1].getValue()))
 					std::swap(newIndM[j], newIndM[j+1]);
 			}
 		}
@@ -83,9 +83,9 @@ int main() {
 	srand(time(NULL));
 	ExecClass e;
 	e.setAlgorithm(new StandardEvo());
-	e.setFitnessFunction(new FitnessFunction());
-	e.setMutationFunction(new MutationFunction());
-	e.setCrossoverFunction(new CrossoverFunction());	//
+	e.setFitnessFunction(FitnessFunction());
+	e.setMutationFunction(MutationFunction());
+	e.setCrossoverFunction(CrossoverFunction());	//
 	ui(e);
 	return 0;
 }

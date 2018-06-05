@@ -19,7 +19,7 @@
 class EvoAlgorithm {
 public:
 	virtual ~EvoAlgorithm() {}
-	virtual Population execAlgorithm(const Population& p, FitnessFunction *ff, MutationFunction *mf, CrossoverFunction *cf) {}		///< Function responsible for executing the algorithm code.
+	virtual Population execAlgorithm(Population& p, FitnessFunction& ff, MutationFunction& mf, CrossoverFunction& cf) {}		///< Function responsible for executing the algorithm code.
 };
 
 

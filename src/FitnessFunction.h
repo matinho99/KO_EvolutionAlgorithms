@@ -18,11 +18,11 @@
 class FitnessFunction {
 public:
 	FitnessFunction();
-	FitnessFunction(std::vector<float> numFact, std::vector<float> denomFact, float t);
-	std::vector<float> getNumeratorFactors();
-	void setNumeratorFactors(std::vector<float> numFact);
-	std::vector<float> getDenominatorFactors();
-	void setDenominatorFactors(std::vector<float> denomFact);
+	FitnessFunction(const std::vector<float>& numFact, const std::vector<float>& denomFact, float t);
+	std::vector<float>& getNumeratorFactors();
+	void setNumeratorFactors(const std::vector<float>& numFact);
+	std::vector<float>& getDenominatorFactors();
+	void setDenominatorFactors(const std::vector<float>& denomFact);
 	float getTarget();
 	void setTarget(float t);
 	float calculateFitness(float x);			///< Calculate fitness of x

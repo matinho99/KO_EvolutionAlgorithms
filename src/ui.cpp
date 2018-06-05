@@ -1,9 +1,9 @@
 #include "ui.h"
 
-std::string getFunctionString(FitnessFunction *ff) {
+std::string getFunctionString(FitnessFunction &ff) {
 	std::string function;
-	std::vector<float> num = ff->getNumeratorFactors();
-	std::vector<float> denom = ff->getDenominatorFactors();
+	std::vector<float> num = ff.getNumeratorFactors();
+	std::vector<float> denom = ff.getDenominatorFactors();
 	int numSize = num.size();
 	int denomSize = denom.size();
 	function += "(";
@@ -42,9 +42,9 @@ void ui(ExecClass &e) {
 	while(1) {
 		std::cout << "----------" << std::endl;
 		std::cout << "Funkcja oceny: " << functionString << std::endl;
-		std::cout << "Wartosc docelowa: " << e.getFitnessFunction()->getTarget() << std::endl;
-		std::cout << "Wspolczynnik mutacji: " << e.getMutationFunction()->getMutator() << std::endl;
-		std::cout << "Wspolczynnik krzyzowania: " << e.getCrossoverFunction()->getCrossFactor() << std::endl;
+		std::cout << "Wartosc docelowa: " << e.getFitnessFunction().getTarget() << std::endl;
+		std::cout << "Wspolczynnik mutacji: " << e.getMutationFunction().getMutator() << std::endl;
+		std::cout << "Wspolczynnik krzyzowania: " << e.getCrossoverFunction().getCrossFactor() << std::endl;
 		std::cout << "Opcje:\n";
 		std::cout << "1: Nowa populacja\n";
 		std::cout << "2: Wygeneruj kolejna populacje\n";
@@ -114,7 +114,7 @@ void ui(ExecClass &e) {
 						factors.push_back(fact);
 					}
 
-					e.getFitnessFunction()->setNumeratorFactors(factors);
+					e.getFitnessFunction().setNumeratorFactors(factors);
 					functionString = getFunctionString(e.getFitnessFunction());
 				} else {
 					std::cout << "Stopien wielomianu nie moze byc mniejszy od zera\n";
@@ -135,7 +135,7 @@ void ui(ExecClass &e) {
 						factors.push_back(fact);
 					}
 
-					e.getFitnessFunction()->setDenominatorFactors(factors);
+					e.getFitnessFunction().setDenominatorFactors(factors);
 					functionString = getFunctionString(e.getFitnessFunction());
 				} else {
 					std::cout << "Stopien wielomianu nie moze byc mniejszy od zera\n";
@@ -145,19 +145,19 @@ void ui(ExecClass &e) {
 				float target;
 				std::cout << "Wartosc docelowa = ";
 				std::cin >> target;
-				e.getFitnessFunction()->setTarget(target);
+				e.getFitnessFunction().setTarget(target);
 				break;
 			case 7:
 				float cmf;
 				std::cout << "Parametr mutacji = ";
 				std::cin >> cmf;
-				e.getMutationFunction()->setMutator(cmf);
+				e.getMutationFunction().setMutator(cmf);
 				break;
 			case 8:
 				float ccf;
 				std::cout << "Parametr krzyzowania = ";
 				std::cin >> ccf;
-				e.getCrossoverFunction()->setCrossFactor(ccf);
+				e.getCrossoverFunction().setCrossFactor(ccf);
 				break;
 			case 0:
 				return;

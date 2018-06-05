@@ -1,9 +1,6 @@
 #include "ExecClass.h"
 
 ExecClass::ExecClass() {
-	ff = nullptr;
-	mf = nullptr;
-	cf = nullptr;
 	alg = nullptr;
 }
 
@@ -17,43 +14,43 @@ ExecClass::ExecClass(int popSize) : ExecClass() {
 
 ExecClass::~ExecClass() {}
 
-Population ExecClass::getPopulation() {
+Population& ExecClass::getPopulation() {
 	return pop;
 }
 
-FitnessFunction *ExecClass::getFitnessFunction() {
+FitnessFunction& ExecClass::getFitnessFunction() {
 	return ff;
 }
 
-MutationFunction *ExecClass::getMutationFunction() {
+MutationFunction& ExecClass::getMutationFunction() {
 	return mf;
 }
 
-CrossoverFunction *ExecClass::getCrossoverFunction() {
+CrossoverFunction& ExecClass::getCrossoverFunction() {
 	return cf;
 }
 
-EvoAlgorithm *ExecClass::getAlgorithm() {
+EvoAlgorithm* ExecClass::getAlgorithm() {
 	return alg;
 }
 
-void ExecClass::setPopulation(Population p) {
+void ExecClass::setPopulation(const Population& p) {
 	pop = p;
 }
 
-void ExecClass::setFitnessFunction(FitnessFunction *f) {
+void ExecClass::setFitnessFunction(const FitnessFunction& f) {
 	ff = f;
 }
 
-void ExecClass::setMutationFunction(MutationFunction *f) {
+void ExecClass::setMutationFunction(const MutationFunction& f) {
 	mf = f;
 }
 
-void ExecClass::setCrossoverFunction(CrossoverFunction *f) {
+void ExecClass::setCrossoverFunction(const CrossoverFunction& f) {
 	cf = f;
 }
 
-void ExecClass::setAlgorithm(EvoAlgorithm *ea) {
+void ExecClass::setAlgorithm(EvoAlgorithm* ea) {
 	alg = ea;
 }
 
@@ -63,6 +60,6 @@ void ExecClass::generateNextPopulation() {
 
 void ExecClass::showPopulationFitness() {
 	for(Individual i : pop.getIndividuals()) {
-		std::cout << i.getValue() << " - fitness = " << ff->calculateFitness(i.getValue()) << " - function value = " << ff->calculateFunctionValue(i.getValue()) << std::endl;
+		std::cout << i.getValue() << " - fitness = " << ff.calculateFitness(i.getValue()) << " - function value = " << ff.calculateFunctionValue(i.getValue()) << std::endl;
 	}
 }

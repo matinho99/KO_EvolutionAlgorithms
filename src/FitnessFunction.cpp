@@ -2,13 +2,13 @@
 
 FitnessFunction::FitnessFunction() : target(0.0f) {}
 
-FitnessFunction::FitnessFunction(std::vector<float> numFact, std::vector<float> denomFact, float t) : numeratorFactors(numFact), denominatorFactors(denomFact), target(t) {}
+FitnessFunction::FitnessFunction(const std::vector<float>& numFact, const std::vector<float>& denomFact, float t) : numeratorFactors(numFact), denominatorFactors(denomFact), target(t) {}
 
-std::vector<float> FitnessFunction::getNumeratorFactors() {
+std::vector<float>& FitnessFunction::getNumeratorFactors() {
 	return numeratorFactors;
 }
 
-std::vector<float> FitnessFunction::getDenominatorFactors() {
+std::vector<float>& FitnessFunction::getDenominatorFactors() {
 	return denominatorFactors;
 }
 
@@ -16,11 +16,11 @@ float FitnessFunction::getTarget() {
 	return target;
 }
 
-void FitnessFunction::setNumeratorFactors(std::vector<float> numFact) {
+void FitnessFunction::setNumeratorFactors(const std::vector<float>& numFact) {
 	numeratorFactors = numFact;
 }
 
-void FitnessFunction::setDenominatorFactors(std::vector<float> denomFact) {
+void FitnessFunction::setDenominatorFactors(const std::vector<float>& denomFact) {
 	denominatorFactors = denomFact;
 }
 
