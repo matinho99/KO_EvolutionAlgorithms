@@ -82,7 +82,7 @@ public:
 int main() {
 	srand(time(NULL));
 	ExecClass e;
-	e.setAlgorithm(new StandardEvo());
+	e.setAlgorithm(new PairsEvo());
 	e.setFitnessFunction(FitnessFunction());
 	e.setMutationFunction(MutationFunction());
 	e.setCrossoverFunction(CrossoverFunction());

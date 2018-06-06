@@ -20,11 +20,6 @@ public:
 
 BOOST_AUTO_TEST_SUITE(EvoTests)
 
-BOOST_AUTO_TEST_CASE(GivenOneThingAnotherThingHappens)  // proof that Boost tests work
-{
-	BOOST_CHECK_EQUAL(2+2,4);
-}
-
 /* Individual class testing */
 BOOST_AUTO_TEST_CASE(WhenIndividualDefaultConstructThenValueIsZero) {
 	Individual ind;
@@ -48,6 +43,21 @@ BOOST_AUTO_TEST_CASE(WhenPopulationDefualtConstructThenItIsEmpty) {
 	BOOST_CHECK_EQUAL(true, pop.getIndividuals().empty());
 }
 
+BOOST_AUTO_TEST_CASE(WhenPopulationConstructWithVectorThenPopulationValuesAreCorrect) {
+	std::vector<Individual> inds {Individual(1.0f), Individual(2.0f), Individual(3.0f)};
+	Population pop(inds);
+
+	for(int i=0; i<inds.size(); ++i) BOOST_CHECK_EQUAL(inds[i].getValue(), pop.getIndividuals()[i].getValue());
+}
+
+BOOST_AUTO_TEST_CASE(WhenConstructWithPopGenerationThenSizeAndValuesAreCorrect) {
+	int popSize = 10;
+	int range = 20;
+	Population pop(popSize, range);
+	BOOST_CHECK_EQUAL(popSize, pop.getIndividuals().size());
+	for(Individual i : pop.getIndividuals()) BOOST_CHECK( i.getValue() < range && i.getValue() > -range ); 
+}
+
 BOOST_AUTO_TEST_CASE(WhenAddingOneIndividualToPopulationThenItIsNotEmpty) {
 	Population pop;
 	Individual ind;
@@ -63,6 +73,14 @@ BOOST_AUTO_TEST_CASE(WhenTwoIndividualsAddedToPopulationThenLastOnesValueIsCorre
 	p.addIndividual(ind2);
 	float checkVal = p.getIndividuals().back().getValue();
 	BOOST_CHECK_EQUAL(6.0f, checkVal);
+}
+
+BOOST_AUTO_TEST_CASE(WhenPopulationSetIndividualsVectorThenValuesAreCorrect) {
+	std::vector<Individual> inds {Individual(1.0f), Individual(2.0f), Individual(3.0f)};
+	Population pop;
+	pop.setIndividuals(inds);
+	BOOST_CHECK_EQUAL(inds.size(), pop.getIndividuals().size());
+	for(int i=0; i<inds.size(); ++i) BOOST_CHECK_EQUAL(inds[i].getValue(), pop.getIndividuals()[i].getValue());
 }
 
 /* FitnessFunction class testing */
@@ -137,6 +155,11 @@ BOOST_AUTO_TEST_CASE(WhenMutationDefaultConstructThenMutatorIsZero) {
 	BOOST_CHECK_EQUAL(0.0f, mf.getMutator());
 }
 
+BOOST_AUTO_TEST_CASE(WhenMutationConstructWithValueThenMutatorIsCorrect) {
+	MutationFunction mf(0.05f);
+	BOOST_CHECK_EQUAL(0.05f, mf.getMutator());
+}
+
 BOOST_AUTO_TEST_CASE(WhenMutationIsSetThenMutatorIsCorrect) {
 	MutationFunction mf;
 	mf.setMutator(5.0f);
@@ -147,6 +170,11 @@ BOOST_AUTO_TEST_CASE(WhenMutationIsSetThenMutatorIsCorrect) {
 BOOST_AUTO_TEST_CASE(WhenCrossoverDefaultConstructThenCrossoverFactorIsZero) {
 	CrossoverFunction cf;
 	BOOST_CHECK_EQUAL(0.0f, cf.getCrossFactor());
+}
+
+BOOST_AUTO_TEST_CASE(WhenCrossoverConstructWithValueThenCrossoverFactorIsCorrect) {
+	CrossoverFunction cf(0.6f);
+	BOOST_CHECK_EQUAL(0.6f, cf.getCrossFactor());
 }
 
 BOOST_AUTO_TEST_CASE(WhenCrossoverIsSetThenCrossoverFactorIsCorrect) {
@@ -167,7 +195,7 @@ BOOST_AUTO_TEST_CASE(WhenExecClassNullAlgorithmThenGeneratePopulationThrows) {
 	BOOST_CHECK_THROW(e.generateNextPopulation(), EvoNullPointerException);
 }
 
-BOOST_AUTO_TEST_CASE(WhenExecClassCopyConstructThenMembersAreSetCorrectly) {
+BOOST_AUTO_TEST_CASE(WhenExecClassConstructWithMemberValuesThenMembersAreSetCorrectly) {
 	std::vector<Individual> inds { 5.0f, 10.0f, 15.0f };
 	std::vector<float> num { 1.0f, 2.0f };
 	std::vector<float> denom { 2.0f };

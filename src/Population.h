@@ -13,8 +13,9 @@
 #define POPULATION_H_
 
 #include <vector>
-#include "Individual.h"
+#include <math.h>
 #include <iostream>
+#include "Individual.h"
 
 class Population {
 public:

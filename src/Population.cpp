@@ -6,7 +6,7 @@ Population::Population(const std::vector<Individual>& inds) : pop(inds) {}
 
 Population::Population(int popSize, int range) {
 	for(int i = 0; i < popSize; ++i) {
-		float val = rand() % range + (float)rand()/RAND_MAX;
+		float val = pow(-1, rand()%2)*(rand() % range + (float)rand()/RAND_MAX);
 		pop.push_back(Individual(val));
 	}
 }
