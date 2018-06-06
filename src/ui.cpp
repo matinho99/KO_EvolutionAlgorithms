@@ -40,6 +40,8 @@ void ui(ExecClass &e) {
 	std::string functionString = getFunctionString(e.getFitnessFunction());
 
 	while(1) {
+		if(!std::cin) throw UIInputException();
+
 		std::cout << "----------" << std::endl;
 		std::cout << "Funkcja oceny: " << functionString << std::endl;
 		std::cout << "Wartosc docelowa: " << e.getFitnessFunction().getTarget() << std::endl;
@@ -62,18 +64,13 @@ void ui(ExecClass &e) {
 		switch(choice) {
 			case 1: {
 				int popSize;
-				Population newPop;
+				int range;
 				popno = 0;
 				std::cout << "Jak duza ma byc nowa populacja?: ";
 				std::cin >> popSize;
-				
-				for(int i = 0; i < popSize; ++i) {
-					float val = rand() % 20 + (float)rand()/RAND_MAX;
-					Individual ind(val);
-					newPop.addIndividual(ind);
-				}
-
-				e.setPopulation(newPop);
+				std::cout << "Podaj x dla zakresu wartości populacji [-x, x]: ";
+				std::cin >> range;
+				e.setPopulation(Population(popSize, range));
 				break;
 			}
 			case 2:

@@ -13,4 +13,9 @@ public:
 	const char* what() const throw() { return "Odwolanie do pustego wskaznika"; };
 };
 
+class UIInputException : public std::exception {
+public:
+	const char* what() const throw() { return "Podano niewlasciwa wartosc na wejscie"; };
+};
+
 #endif /* EVOEXCEPTION_H_ */

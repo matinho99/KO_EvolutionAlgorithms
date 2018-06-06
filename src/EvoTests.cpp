@@ -6,6 +6,18 @@
 
 #include "boost/test/unit_test.hpp"
 
+class TestEvoAlg : public EvoAlgorithm {
+public:
+	TestEvoAlg() {}
+	~TestEvoAlg() {}
+
+	Population execAlgorithm(Population& p, FitnessFunction& ff, MutationFunction& mf, CrossoverFunction& cf) {
+		Population newPop;
+		newPop.addIndividual(p.getIndividuals().front());
+		return newPop;
+	}
+};
+
 BOOST_AUTO_TEST_SUITE(EvoTests)
 
 BOOST_AUTO_TEST_CASE(GivenOneThingAnotherThingHappens)  // proof that Boost tests work
@@ -144,14 +156,33 @@ BOOST_AUTO_TEST_CASE(WhenCrossoverIsSetThenCrossoverFactorIsCorrect) {
 }
 
 /* ExecClass class testing */
-BOOST_AUTO_TEST_CASE(WhenExecClassDefaultConstructThenPopulationIsEmptyAndFunctionsAndAlgorithmAreNull) {
+BOOST_AUTO_TEST_CASE(WhenExecClassDefaultConstructThenPopulationIsEmptyAndAlgorithmIsNull) {
 	ExecClass e;
 	BOOST_CHECK_EQUAL(true, e.getPopulation().getIndividuals().empty());
+	BOOST_CHECK(e.getAlgorithm() == nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(WhenExecClassNullAlgorithmThenGeneratePopulationThrows) {
 	ExecClass e;
 	BOOST_CHECK_THROW(e.generateNextPopulation(), EvoNullPointerException);
+}
+
+BOOST_AUTO_TEST_CASE(WhenExecClassCopyConstructThenMembersAreSetCorrectly) {
+	std::vector<Individual> inds { 5.0f, 10.0f, 15.0f };
+	std::vector<float> num { 1.0f, 2.0f };
+	std::vector<float> denom { 2.0f };
+	ExecClass e(Population(inds), FitnessFunction(num, denom, 5.0f), MutationFunction(), CrossoverFunction(), new TestEvoAlg());
+
+	for(int i=0; i<inds.size(); ++i) BOOST_CHECK_EQUAL(inds[i].getValue(), e.getPopulation().getIndividuals().at(i).getValue());
+
+	BOOST_CHECK_EQUAL_COLLECTIONS(begin(num), end(num), begin(e.getFitnessFunction().getNumeratorFactors()), end(e.getFitnessFunction().getNumeratorFactors()));
+	BOOST_CHECK_EQUAL_COLLECTIONS(begin(denom), end(denom), begin(e.getFitnessFunction().getDenominatorFactors()), end(e.getFitnessFunction().getDenominatorFactors()));
+	BOOST_CHECK_EQUAL(5.0f, e.getFitnessFunction().getTarget());
+	BOOST_CHECK_EQUAL(0.0f, e.getMutationFunction().getMutator());
+	BOOST_CHECK_EQUAL(0.0f, e.getCrossoverFunction().getCrossFactor());
+	e.generateNextPopulation();
+	BOOST_CHECK_EQUAL(1, e.getPopulation().getIndividuals().size());
+	BOOST_CHECK_EQUAL(5.0f, e.getPopulation().getIndividuals().front().getValue());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

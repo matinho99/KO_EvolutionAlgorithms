@@ -4,13 +4,8 @@ ExecClass::ExecClass() {
 	alg = nullptr;
 }
 
-ExecClass::ExecClass(int popSize) : ExecClass() {
-	for(int i = 0; i<popSize; i++) {
-		float val = rand() % 20 + (float)rand()/RAND_MAX;
-		Individual ind(val);
-		pop.addIndividual(ind);
-	}
-}
+ExecClass::ExecClass(const Population& p, const FitnessFunction& fitF, const MutationFunction& mutF, const CrossoverFunction& crF, EvoAlgorithm *ea)
+	: pop(p), ff(fitF), mf(mutF), cf(crF), alg(ea) {}
 
 ExecClass::~ExecClass() {}
 

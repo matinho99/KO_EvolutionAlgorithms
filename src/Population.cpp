@@ -4,6 +4,13 @@ Population::Population() {}
 
 Population::Population(const std::vector<Individual>& inds) : pop(inds) {}
 
+Population::Population(int popSize, int range) {
+	for(int i = 0; i < popSize; ++i) {
+		float val = rand() % range + (float)rand()/RAND_MAX;
+		pop.push_back(Individual(val));
+	}
+}
+
 void Population::addIndividual(const Individual& ind) {
 	pop.push_back(ind);
 }
@@ -16,12 +23,3 @@ void Population::setIndividuals(const std::vector<Individual>& inds) {
 	pop = inds;
 }
 
-std::ostream& operator<<(std::ostream& os, const Population& p) {
-	Population p_tmp = p;
-
-	for(int i = 0; i < p_tmp.getIndividuals().size(); i++) {
-		os << p_tmp.getIndividuals().at(i).getValue() << std::endl;
-	}
-
-	return os;
-}

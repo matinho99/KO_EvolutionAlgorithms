@@ -93,6 +93,8 @@ int main() {
 		std::cout << "EvoZeroDivisionException rzucony: " << e.what() << std::endl;
 	} catch (EvoNullPointerException e) {
 		std::cout << "EvoNullPointerException rzucony: " << e.what() << std::endl;
+	} catch (UIInputException e) {
+		std::cout << "UIInputException rzucony: " << e.what() << std::endl;
 	} catch (std::exception e) {
 		std::cout << "std::exception rzucony: " << e.what() << std::endl;
 	}

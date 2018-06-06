@@ -21,7 +21,7 @@
 class ExecClass {
 public:
 	ExecClass();
-	ExecClass(int popSize);
+	ExecClass(const Population& p, const FitnessFunction& fitF, const MutationFunction& mutF, const CrossoverFunction& crF, EvoAlgorithm *ea);
 	~ExecClass();
 	Population& getPopulation();
 	void setPopulation(const Population& p);
