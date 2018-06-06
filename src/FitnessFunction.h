@@ -1,10 +1,5 @@
 /*
- * \class FitnessFunction
- *
- * \brief Class that holds the fitness function and methods
- *
- * Class that holds the parameters describing the fitness function, the target,
- * the methods for setting / returning them and calculating the fitness.
+ * @class FitnessFunction
  *
  * Created on: 28.04.2018
  */
@@ -16,22 +11,28 @@
 #include <math.h>
 #include "EvoException.h"
 
+/**
+ * @brief Class that holds the fitness function and methods
+ *
+ * Class that holds the parameters describing the fitness function, the target,
+ * the methods for setting as well as returning them and calculating the fitness.
+ */
 class FitnessFunction {
 public:
 	FitnessFunction();
 	FitnessFunction(const std::vector<float>& numFact, const std::vector<float>& denomFact, float t);
-	std::vector<float>& getNumeratorFactors();
-	void setNumeratorFactors(const std::vector<float>& numFact);
-	std::vector<float>& getDenominatorFactors();
-	void setDenominatorFactors(const std::vector<float>& denomFact);
-	float getTarget();
-	void setTarget(float t);
-	float calculateFitness(float x);		///< Calculate fitness of x
-	float calculateFunctionValue(float x);		///< Calculate the function value of x
+	std::vector<float>& getNumeratorFactors();							///< Get the factors of the function numerator.
+	void setNumeratorFactors(const std::vector<float>& numFact);		///< Set the factors of the function numerator.
+	std::vector<float>& getDenominatorFactors();						///< Get the factors of the function denominator.
+	void setDenominatorFactors(const std::vector<float>& denomFact);	///< Set the factors of the function denominator.
+	float getTarget();							///< Get the target of the function.
+	void setTarget(float t);					///< Set the target of the function.
+	float calculateFitness(float x);			///< Calculate fitness of x.
+	float calculateFunctionValue(float x);		///< Calculate the function value of x.
 private:
-	std::vector<float> numeratorFactors;		///< Numerator factors of the fitness function in descending powers.
-	std::vector<float> denominatorFactors;		///< Denominator factors of the fitness function in descending powers.
-	float target;					///< Target value of the fitness function.
+	std::vector<float> numeratorFactors;
+	std::vector<float> denominatorFactors;
+	float target;
 };
 
 

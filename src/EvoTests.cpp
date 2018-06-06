@@ -1,3 +1,9 @@
+/*
+ * @class TestEvoAlg
+ *
+ * Created on: 28.04.2018
+ */
+
 #include "EvoAlgorithm.h"
 #include "ExecClass.h"
 
@@ -6,6 +12,9 @@
 
 #include "boost/test/unit_test.hpp"
 
+/**
+ * @brief A test algorithm class.
+ */
 class TestEvoAlg : public EvoAlgorithm {
 public:
 	TestEvoAlg() {}
@@ -214,4 +223,3 @@ BOOST_AUTO_TEST_CASE(WhenExecClassConstructWithMemberValuesThenMembersAreSetCorr
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-

@@ -34,6 +34,9 @@ std::string getFunctionString(FitnessFunction &ff) {
 	return function;
 }
 
+/**
+ * @throws UIInputException on invalid input.
+ */
 void ui(ExecClass &e) {
 	int popno = 0;
 	int choice;

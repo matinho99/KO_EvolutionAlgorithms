@@ -49,6 +49,9 @@ void ExecClass::setAlgorithm(EvoAlgorithm* ea) {
 	alg = ea;
 }
 
+/**
+ * @throws EvoNullPointerException if the algorithm is a nullptr.
+ */
 void ExecClass::generateNextPopulation() {
 	if(alg == nullptr) throw EvoNullPointerException();
 	pop = alg->execAlgorithm(pop, ff, mf, cf);
@@ -56,6 +59,6 @@ void ExecClass::generateNextPopulation() {
 
 void ExecClass::showPopulationFitness() {
 	for(Individual i : pop.getIndividuals()) {
-		std::cout << i.getValue() << " - fitness = " << ff.calculateFitness(i.getValue()) << " - function value = " << ff.calculateFunctionValue(i.getValue()) << std::endl;
+		std::cout << i.getValue() << " - fitness = " << ff.calculateFitness(i.getValue()) << " - wartosc funkcji = " << ff.calculateFunctionValue(i.getValue()) << std::endl;
 	}
 }

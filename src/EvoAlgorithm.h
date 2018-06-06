@@ -1,9 +1,5 @@
 /*
- * \class EvoAlgorithm
- *
- * \brief Base class for specific algorithm class implementation.
- *
- * Class that is inherited to a specific evolutionary algorithm class.
+ * @class EvoAlgorithm
  *
  * Created on: 28.04.2018
  */
@@ -16,6 +12,11 @@
 #include "MutationFunction.h"
 #include "CrossoverFunction.h"
 
+/**
+ * @brief Base class for specific algorithm class implementation.
+ *
+ * Class that is inherited to a specific evolutionary algorithm class.
+ */
 class EvoAlgorithm {
 public:
 	virtual ~EvoAlgorithm() {}

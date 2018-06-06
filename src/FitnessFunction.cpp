@@ -28,6 +28,9 @@ void FitnessFunction::setTarget(float t) {
 	target = t;
 }
 
+/**
+ * @throws EvoZeroDivisionException if the denominator of the function equals zero.
+ */
 float FitnessFunction::calculateFunctionValue(float x) {
 	float numeratorValue = 0.0f;
 	float denominatorValue = 0.0f;
@@ -54,7 +57,3 @@ float FitnessFunction::calculateFitness(float x) {
 	float result = calculateFunctionValue(x);
 	return (result - target == 0) ? 1/1000.0f : 1.0f/(fabs(result - target));
 }
-
-
-
-
